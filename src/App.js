@@ -5,11 +5,11 @@ import Letter from "./Letter.js";
 import Word from "./Word/Word";
 
 function App() {
-  const [letter, stateLetter] = useState(null);
+  /*const [letter, stateLetter] = useState(null);
   const printLetter = (event) => {
     stateLetter(event.target.innerText);
     console.log(event.target.innerText);
-  };
+  };*/
 
   const [errorCounter, setErrorCounter] = useState(0);
 
