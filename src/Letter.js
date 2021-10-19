@@ -1,20 +1,12 @@
-import {useState} from "react"; 
+//import { useState } from "react";
 import "./Letter.css";
 
-const Letter = ({isCorrect}) => {
-    const alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L",
-                        "M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-    
-    const [played, setPlayed] = useState(false);
+const Letter = ({ letter, actiononClick }) => {
+  //const [state, setState] = useState(true);
 
-    return (
-        <div className="letter-container">
-        {
-            alphabet.map( letter => <div key={letter} className={isCorrect ? "letter green" : "letter red"} 
-                                         onClick={ ()=> setPlayed(true)}> {letter} </div>)
-        }
-        </div>
-    )
+  return (
+    <div className="letter" onClick={actiononClick}>{letter.name}</div>
+  )
 }
 
 export default Letter;
