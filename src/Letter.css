@@ -1,0 +1,13 @@
+.letter-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.letter {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  text-align: center;
+  margin: 3px;
+}
