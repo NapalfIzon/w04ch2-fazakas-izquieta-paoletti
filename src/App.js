@@ -3,7 +3,7 @@ import './App.css';
 import Hangman from './components/Hangman/Hangman';
 import { useState } from 'react';
 import Letter from "./Letter.js";
-import Word from "./Word.js";
+import Word from "./Word/Word"
 
 function App() {
   const [letter, stateLetter] = useState(null)
@@ -12,6 +12,7 @@ function App() {
     console.log(event.target.innerText);
   }
 
+  const [errorCounter, setErrorCounter] = useState(0);
   const alphabet = [
     {
       name: "A",
@@ -128,7 +129,7 @@ function App() {
       word: "ornitorrinco",
       solvedLetters: 0,
       playedLetter: "",
-      lettersOk: "orni",
+      lettersOk: "or",
       errorCounter: 0,
     },
     {
@@ -167,7 +168,7 @@ function App() {
       errorCounter: 0,
     },
   ]);
-
+  const variable = playedWord[0].word.split("");
   return (
     <>
       <header className="header"><h1>HANGMAN</h1></header>
@@ -186,7 +187,11 @@ function App() {
       </div>
       <div className="letter-container">
         {alphabet.map((letter, i) => (
-          <Letter key={i} letter={letter} actiononClick={(e) => printLetter(e)} />))}
+          <Letter key={i} letter={letter} actiononClick={(e) => {
+            printLetter(e);
+            (() => { variable.includes(letter.name.toLowerCase()) ? console.log(true) : setErrorCounter(errorCounter + 1) })()
+          }
+          } />))}
       </div>
     </>
   );
