@@ -34,8 +34,7 @@ function App() {
       </div>
 
       <Letter />
-   
-      <Letter />
+  
     </>
   );
 }
