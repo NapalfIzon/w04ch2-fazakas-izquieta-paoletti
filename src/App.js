@@ -1,38 +1,52 @@
+import { useState } from "react";
 import "./App.css";
+import Word from "./Word/Word";
 
 function App() {
-  const playedWord = [
+  const [playedWord, setPlayedWord] = useState([
     {
-      word: "hola",
+      word: "ornitorrinco",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "orni",
+      errorCounter: 0,
     },
     {
       word: "caracola",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "",
+      errorCounter: 0,
     },
     {
       word: "surf",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "",
+      errorCounter: 0,
     },
     {
       word: "ornitorrinco",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "",
+      errorCounter: 0,
     },
     {
       word: "perro",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "",
+      errorCounter: 0,
     },
     {
       word: "gato",
       solvedLetters: 0,
       playedLetter: "",
+      lettersOk: "",
+      errorCounter: 0,
     },
-  ];
+  ]);
 
   return (
     <>
@@ -65,10 +79,7 @@ function App() {
       </main>
 
       <div className="word-container">
-        <div className="word-container__correct">H</div>
-        <div className="word-container__correct">O</div>
-        <div className="word-container__correct">L</div>
-        <div className="word-container__correct">A</div>
+        <Word word={playedWord[0]} />
       </div>
       <div className="letter-container">
         <div className="letter">A</div>
