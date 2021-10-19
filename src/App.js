@@ -1,179 +1,145 @@
-
-import './App.css';
-import Hangman from './components/Hangman/Hangman';
-import { useState } from 'react';
+import "./App.css";
+import Hangman from "./components/Hangman/Hangman";
+import { useState } from "react";
 import Letter from "./Letter.js";
-import Word from "./Word/Word"
+import Word from "./Word/Word";
 
 function App() {
-  const [letter, stateLetter] = useState(null)
+  const [letter, stateLetter] = useState(null);
   const printLetter = (event) => {
     stateLetter(event.target.innerText);
     console.log(event.target.innerText);
-  }
+  };
 
   const [errorCounter, setErrorCounter] = useState(0);
+
   const alphabet = [
     {
       name: "A",
-      state: null
+      state: null,
     },
     {
       name: "B",
-      state: null
+      state: null,
     },
     {
       name: "C",
-      state: null
+      state: null,
     },
     {
       name: "D",
-      state: null
+      state: null,
     },
     {
       name: "E",
-      state: null
+      state: null,
     },
     {
       name: "F",
-      state: null
+      state: null,
     },
     {
       name: "G",
-      state: null
+      state: null,
     },
     {
       name: "H",
-      state: null
+      state: null,
     },
     {
       name: "I",
-      state: null
+      state: null,
     },
     {
       name: "J",
-      state: null
+      state: null,
     },
     {
       name: "K",
-      state: null
+      state: null,
     },
     {
       name: "L",
-      state: null
+      state: null,
     },
     {
       name: "M",
-      state: null
+      state: null,
     },
     {
       name: "N",
-      state: null
+      state: null,
     },
     {
       name: "Ñ",
-      state: null
+      state: null,
     },
     {
       name: "O",
-      state: null
+      state: null,
     },
     {
       name: "P",
-      state: null
+      state: null,
     },
     {
       name: "Q",
-      state: null
+      state: null,
     },
     {
       name: "R",
-      state: null
+      state: null,
     },
     {
       name: "S",
-      state: null
+      state: null,
     },
     {
       name: "T",
-      state: null
+      state: null,
     },
     {
       name: "U",
-      state: null
+      state: null,
     },
     {
       name: "V",
-      state: null
+      state: null,
     },
     {
       name: "W",
-      state: null
+      state: null,
     },
     {
       name: "X",
-      state: null
+      state: null,
     },
     {
       name: "Y",
-      state: null
+      state: null,
     },
     {
       name: "Z",
-      state: null
-    }
-  ]
+      state: null,
+    },
+  ];
 
-  const [playedWord, setPlayedWord] = useState([
-    {
-      word: "ornitorrinco",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "or",
-      errorCounter: 0,
-    },
-    {
-      word: "caracola",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "",
-      errorCounter: 0,
-    },
-    {
-      word: "surf",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "",
-      errorCounter: 0,
-    },
-    {
-      word: "ornitorrinco",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "",
-      errorCounter: 0,
-    },
-    {
-      word: "perro",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "",
-      errorCounter: 0,
-    },
-    {
-      word: "gato",
-      solvedLetters: 0,
-      playedLetter: "",
-      lettersOk: "",
-      errorCounter: 0,
-    },
-  ]);
-  const variable = playedWord[0].word.split("");
+  const [playedWord, setPlayedWord] = useState({
+    word: "ornitorrinco",
+    solvedLetters: 0,
+    playedLetter: "",
+    lettersOk: "or",
+    errorCounter: 0,
+  });
+  const variable = playedWord.word.split("");
   return (
     <>
-      <header className="header"><h1>HANGMAN</h1></header>
+      <header className="header">
+        <h1>HANGMAN</h1>
+      </header>
       <main>
         <svg className="hangman" viewBox="0 0 96 96" width="300" height="300">
+          <Hangman errors={errorCounter} />
         </svg>
         <div className="incorrect-letters">
           <div className="incorrect-letters__letter">L</div>
@@ -183,15 +149,29 @@ function App() {
       </main>
 
       <div className="word-container">
-        <Word word={playedWord[0]} />
+        <Word word={playedWord} />
       </div>
       <div className="letter-container">
         {alphabet.map((letter, i) => (
-          <Letter key={i} letter={letter} actiononClick={(e) => {
-            printLetter(e);
-            (() => { variable.includes(letter.name.toLowerCase()) ? console.log(true) : setErrorCounter(errorCounter + 1) })()
-          }
-          } />))}
+          <Letter
+            key={i}
+            letter={letter}
+            actiononClick={(e) => {
+              (() => {
+                variable.includes(letter.name.toLowerCase())
+                  ? setPlayedWord({
+                      ...playedWord,
+                      lettersOk:
+                        playedWord.lettersOk + letter.name.toLowerCase(),
+                    })
+                  : (() => {
+                      setErrorCounter(errorCounter + 1);
+                      console.log(errorCounter);
+                    })();
+              })();
+            }}
+          />
+        ))}
       </div>
     </>
   );
