@@ -43,6 +43,13 @@ main {
   margin: 50px;
   justify-content: center;
 }
+.word-container__correct {
+  display: flex;
+  margin: 10px;
+  border-bottom: 1px solid black;
+}
 .letter {
   margin: 10px;
+  font-size: 30px;
+  border: 1px solid black;
 }
